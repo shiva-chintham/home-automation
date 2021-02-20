@@ -1,0 +1,129 @@
+
+<html>
+
+<head>
+  <title>wifi Contolled Home automation</title>
+ <link rel="stylesheet" href="stryle.css" >
+</head>
+
+<body>
+
+
+
+
+<div class="name">CMR College of Engineering and Technology</div>
+  <div class="buttons" >
+
+
+
+
+
+<button class="button" onclick="myFunction()"> Toggle </button>
+<button class="button" onclick="bulb_one()"> Bulb one  </button>
+<button class="button" onclick="bulb_two()"> Bulb two </button>
+<button class="button" onclick="bulb_three()"> Bulb three </button>
+<button class="button" onclick="bulb_four()"> Bulb four </button>
+
+</div>
+
+</body>
+
+<style>
+
+body{
+  margin:0;
+  padding: 0;
+  background:#303030 ;
+  font-family: 'Roboto', sans-serif;
+}
+button{
+
+  border-radius: 12px;
+  padding: 5px;
+  margin-bottom: 15px;
+  font-size: 24px;
+  border: 1px solid white;
+  transition: 0.6s;
+}
+.buttons{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 24px;
+}
+button:hover{
+color: white;
+background-color: black;
+}
+
+.name{
+
+  position: absolute;
+
+left:50%;
+top:120px;
+transform: translate(-50%,-50%);
+  font-size:30px;
+  font-weight: 400;
+  font-size-adjust: auto;
+}
+</style>
+<script>
+function myFunction()
+{
+  console.log("button was clicked!");
+  var xhr = new XMLHttpRequest();
+  var url = "/ledstate";
+
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("led-state").innerHTML = this.responseText;
+    }
+  };
+
+  xhr.open("GET", url, true);
+  xhr.send();
+};
+document.addEventListener('DOMContentLoaded', myFunction, false);
+
+function bulb_one(){
+console.log("light one on");
+var xhr = new XMLHttpRequest();
+var url ="/bulb_one";
+xhr.open("GET",url,true);
+xhr.send();
+
+};
+
+function bulb_two(){
+console.log("light two on");
+var xhr = new XMLHttpRequest();
+var url ="/bulb_two";
+xhr.open("GET",url,true);
+xhr.send();
+};
+
+function bulb_three(){
+console.log("light three on");
+var xhr = new XMLHttpRequest();
+var url ="/bulb_three";
+xhr.open("GET",url,true);
+xhr.send();
+};
+
+function bulb_four(){
+console.log("light four on");
+var xhr = new XMLHttpRequest();
+var url ="/bulb_four";
+xhr.open("GET",url,true);
+xhr.send();
+};
+
+
+
+</script>
+</html>
